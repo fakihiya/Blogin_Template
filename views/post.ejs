@@ -1,0 +1,25 @@
+
+
+<h1><%= post.title %></h1>
+<p><%= post.content %></p>
+
+<h2>Comments</h2>
+<% if (comments && comments.length > 0) { %>
+  <ul>
+    <% comments.forEach(comment => { %>
+      <li>
+        <p><%= comment.comment %></p>
+        <p>by User ID: <%= comment.user_id %></p>
+      </li>
+    <% }) %>
+  </ul>
+<% } else { %>
+  <p>No comments yet.</p>
+<% } %>
+
+<h3>Add a Comment</h3>
+<form action="/api/posts/<%= post.id %>/comments" method="POST">
+  <textarea name="content" required></textarea>
+  <input type="hidden" name="userId" value="1"> <!-- Replace with the actual user ID -->
+  <button type="submit">Submit Comment</button>
+</form>
